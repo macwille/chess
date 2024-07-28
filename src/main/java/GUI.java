@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GUI {
     private final JPanel panel = new JPanel(new BorderLayout(3, 3));
@@ -30,9 +29,8 @@ public class GUI {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(squares.length, squares[0].length, 0, 0));
         panel.setBorder(new LineBorder(Color.BLACK));
-        for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares[i].length; j++) {
-                Square square = squares[i][j];
+        for (Square[] value : squares) {
+            for (Square square : value) {
                 String text = square.isEmpty() ? " " : square.pick().toString();
                 JButton button;
                 if (square.getClass().equals(BlackSquare.class)) {

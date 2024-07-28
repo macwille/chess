@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Move {
     protected final Player player;
     protected final Notation from;

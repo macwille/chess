@@ -32,6 +32,7 @@ public class Game {
     public Board board() {
         return board;
     }
+
     public void start() {
         board.setUp(white, black);
         Scanner scanner = new Scanner(System.in);
