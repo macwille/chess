@@ -70,14 +70,11 @@ public class TerminalUI {
 
     private void printHelp() {
         System.out.println("Welcome to chess");
-        System.out.println("""
-                Commands:\s
-                print - 'prints board'
-                move - 'inputs a move'
-                new - 'starts new game'
-                help - 'available commands'
-                exit - 'exits game'
-                """);
+        System.out.println("Commands: \n" +
+                "print - 'prints board' move - 'inputs a move\n'" +
+                "new - 'starts new game'\n" +
+                "help - 'available commands'\n" +
+                "exit - 'exits game' ");
     }
 
     private void printExit() {
