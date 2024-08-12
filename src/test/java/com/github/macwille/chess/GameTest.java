@@ -23,6 +23,20 @@ public class GameTest {
     }
 
     @Test
+    public void testToMove() {
+        Game game = new Game(new WhitePlayer(), new BlackPlayer());
+        Assertions.assertTrue(game.toPlay().isWhite());
+        game.start();
+        game.play(new ClassicNotation("A", "2"), new ClassicNotation("A", "3"));
+        Assertions.assertFalse(game.toPlay().isWhite());
+        Assertions.assertThrows(RuntimeException.class, () ->
+                game.play(new ClassicNotation("B", "2"), new ClassicNotation("B", "3")
+                )
+        );
+        Assertions.assertFalse(game.toPlay().isWhite());
+    }
+
+    @Test
     public void testResign() {
         Game game = new Game(new WhitePlayer(), new BlackPlayer());
         FinishedGame whiteVictory = game.resign(false);

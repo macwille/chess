@@ -8,7 +8,7 @@ import com.github.macwille.chess.Square;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Queen extends AbstractPiece {
+public final class Queen extends AbstractPiece implements Piece {
     public Queen(Player player) {
         super(player);
     }

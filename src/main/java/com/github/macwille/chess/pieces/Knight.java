@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public final class Knight extends AbstractPiece {
+public final class Knight extends AbstractPiece implements Piece {
     public Knight(Player player) {
         super(player);
     }

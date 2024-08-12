@@ -7,4 +7,5 @@ public interface Notation {
     int rankInt();
 
     boolean isValid();
+
 }

@@ -16,4 +16,5 @@ public interface Piece {
     Player owner();
 
     List<Square> legalMoves(Notation notation, Board board);
+
 }

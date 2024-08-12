@@ -1,16 +1,47 @@
 package com.github.macwille.chess.pieces;
 
-import com.github.macwille.chess.Board;
-import com.github.macwille.chess.Notation;
-import com.github.macwille.chess.Player;
-import com.github.macwille.chess.Square;
+import com.github.macwille.chess.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Pawn extends AbstractPiece {
+public final class Pawn extends AbstractPiece implements Piece {
+
     public Pawn(Player player) {
         super(player);
+    }
+
+    private List<Square> checkCaptures(Notation notation, Board board) {
+        List<Square> squares = new ArrayList<>();
+        Square square = board.square(notation);
+        boolean white = square.pick().get().owner().isWhite();
+        int fileInt = notation.fileInt();
+        int rankInt = notation.rankInt();
+        Notation left = new IntegerNotation(fileInt + 1, rankInt + 1);
+        Notation right = new IntegerNotation(fileInt - 1, rankInt + 1);
+
+        if (!white) {
+            System.out.println("black player");
+            fileInt = 8 - fileInt;
+            rankInt = 8 - rankInt;
+            left = new IntegerNotation(fileInt, rankInt);
+            right = new IntegerNotation(fileInt, rankInt);
+        }
+
+        if (left.isValid() && board.square(left).pick().isPresent()) {
+            Square leftSquare = board.square(left);
+            System.out.println("Checking " + left);
+            if (leftSquare.pick().get().owner().isWhite() != white) {
+                squares.add(leftSquare);
+            }
+        }
+        if (right.isValid() && board.square(right).pick().isPresent()) {
+            System.out.println("Checking " + right);
+            if (board.square(right).pick().get().owner().isWhite() != white) {
+                squares.add(board.square(right));
+            }
+        }
+        return squares;
     }
 
     @Override
@@ -35,17 +66,6 @@ public final class Pawn extends AbstractPiece {
         }
         moves.addAll(checkCaptures(notation, board));
         return moves;
-    }
-
-    public List<Square> checkCaptures(Notation notation, Board board) {
-        List<Square> squares = new ArrayList<>(2);
-        int fileInt = notation.fileInt();
-        // check
-        if (fileInt > 1) {
-        }
-        if (fileInt < 8) {
-        }
-        return squares;
     }
 
     @Override

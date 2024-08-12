@@ -3,6 +3,7 @@ package com.github.macwille.chess;
 import com.github.macwille.chess.pieces.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class Board {
     private final Square[][] board;
@@ -41,7 +42,7 @@ public final class Board {
         if (!notation.isValid()) {
             throw new IllegalArgumentException("Rank value outside of board");
         }
-        return Arrays.stream(board[7 - i]).toList();
+        return Arrays.stream(board[7 - i]).collect(Collectors.toList());
     }
 
     public List<Square> file(Notation notation) {
@@ -55,15 +56,6 @@ public final class Board {
             squares.add(value[i]);
         }
         return squares.reversed();
-    }
-
-
-    public List<Square> squares() {
-        List<Square> squares = new ArrayList<>();
-        for (Square[] value : board) {
-            Collections.addAll(squares, value);
-        }
-        return squares;
     }
 
     public void setUp(Player white, Player black) {

@@ -4,4 +4,5 @@ public interface Move {
     PlayedMove play();
 
     boolean illegal();
+
 }

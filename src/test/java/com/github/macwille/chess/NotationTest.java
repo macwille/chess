@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test;
 public class NotationTest {
 
     @Test
+    public void testIntegerNotation() {
+        Notation first = new IntegerNotation(1, 2);
+        Notation invalid = new IntegerNotation(0, 2);
+        Notation invalid2 = new IntegerNotation(1, 0);
+        Assertions.assertTrue(first.isValid());
+        Assertions.assertTrue(first.toString().contains("A"));
+        Assertions.assertTrue(first.toString().contains("2"));
+        Assertions.assertFalse(invalid.isValid());
+        Assertions.assertFalse(invalid2.isValid());
+    }
+
+    @Test
     public void testValid() {
         Notation first = new ClassicNotation("A", "1");
         Notation second = new ClassicNotation("H", "8");

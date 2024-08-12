@@ -50,14 +50,16 @@ class PawnTest {
 
     @Test
     public void testCapture() {
-        Notation notation = new ClassicNotation("B", "2");
-        board.square(new ClassicNotation("B", "3")).place(new Pawn(white));
+        Notation notation = new ClassicNotation("C", "2");
+        board.square(new ClassicNotation("B", "3")).place(new Pawn(black));
+        System.out.println(board);
         Square square = board.square(notation);
         Assertions.assertTrue(square.pick().isPresent());
         Piece piece = square.pick().get();
         Assertions.assertFalse(piece.hasMoved());
         List<Square> moves = piece.legalMoves(notation, board);
-        Assertions.assertTrue(moves.isEmpty());
-
+        Assertions.assertEquals(3, moves.size());
+        board.square(new ClassicNotation("D", "3")).place(new Pawn(black));
+        Assertions.assertEquals(4, piece.legalMoves(notation, board).size());
     }
 }
